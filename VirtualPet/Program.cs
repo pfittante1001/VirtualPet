@@ -18,7 +18,7 @@ namespace VirtualPet
             List<string> petNames = new List<string>(numPets);
             List<string> petTypes = new List<string>() { "Cat", "Dog", "Ferrett", "Parrot", "Goldfish", "Hamster", "Snake", "Ultimate Red Eyes Black Dragon", "Godizalla", "King Kong"};
             List<string> results = new List<string>();
-
+            Dictionary<string, string> nameType = new Dictionary<string, string>();
             Console.WriteLine("Welcome to Virtual Pet! ");
             Console.WriteLine("\n\n\nWould you like to meet your virtual pet? ");
             Console.Write("\n\nPlease press the enter key to continue, or type exit to quit: ");
@@ -101,19 +101,33 @@ namespace VirtualPet
                 }
 
                 Console.Write("\n\nNow that we know how many pets you chose and we have some names.");
-                Console.Write("\n\nI will now pick five random types of animals for you.");
+                Console.Write("\n\nI will now pick {0} random types of animals for you.", numPets);
 
                 Random petTypeRan = new Random();
 
                 int myRandomIndex = 0;
                 for (int i = 0; i < numPets; i++)
                 {
+                   
                     myRandomIndex = petTypeRan.Next(petTypes.Count);
+                                   
+                    while (results.Contains(petTypes[myRandomIndex]) == true)
+                    {
+                        myRandomIndex = petTypeRan.Next(petTypes.Count);
+                    }
                     results.Add(petTypes[myRandomIndex]);
+                    nameType.Add(key: results[i], value: petNames[i]);
                 }
 
-                Console.WriteLine(string.Join(" ", results));
+                foreach (KeyValuePair<string, string> pair in nameType)
+                {
+                    Console.WriteLine("Congradulation you have a {0} named {1}!", pair.Key, pair.Value);
+                }
 
+                //foreach (var key in nameType.Keys.ToList())
+                //{
+                //    nameType[key] = "";
+                //}
 
                 exitProgram = true;
 
