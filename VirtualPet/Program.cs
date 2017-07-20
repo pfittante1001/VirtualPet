@@ -14,11 +14,26 @@ namespace VirtualPet
 
             int numPets = 0;
             int tempParse;
+            int petFeed;
+            int petDrink;
+            int petSleep;
+            int petActivity;
+            int createPets = 0;
+            int meetPets;
+            string petName = "";
+            string petType = "";
             bool exitProgram = true;
+            bool isHungry;
+            bool isThirsty;
+            bool isSleepy;
+            bool isBored;
+            bool meetAnotherPet = true;
+
             List<string> petNames = new List<string>(numPets);
             List<string> petTypes = new List<string>() { "Cat", "Dog", "Ferrett", "Parrot", "Goldfish", "Hamster", "Snake", "Ultimate Red Eyes Black Dragon", "Godizalla", "King Kong"};
             List<string> results = new List<string>();
             Dictionary<string, string> nameType = new Dictionary<string, string>();
+            VirtualPet mainPet = new VirtualPet(petName, petType, 0, 0, 0, 0);
             Console.WriteLine("Welcome to Virtual Pet! ");
             Console.WriteLine("\n\n\nWould you like to meet your virtual pet? ");
             Console.Write("\n\nPlease press the enter key to continue, or type exit to quit: ");
@@ -96,7 +111,7 @@ namespace VirtualPet
                 for (int i = 0; i < numPets; i++)
                 {
                     Console.Write("\n\nPlease enter pet name number {0}: ", i+1);
-                    string tempName = Console.ReadLine();
+                    string tempName = Console.ReadLine().ToUpper();
                     petNames.Add(tempName);
                 }
 
@@ -121,18 +136,142 @@ namespace VirtualPet
 
                 foreach (KeyValuePair<string, string> pair in nameType)
                 {
-                    Console.WriteLine("Congradulation you have a {0} named {1}!", pair.Key, pair.Value);
+                    Console.WriteLine("Congradulation you have a {0} named {1}!\n\n", pair.Key, pair.Value);
                 }
 
-                //foreach (var key in nameType.Keys.ToList())
-                //{
-                //    nameType[key] = "";
-                //}
+                Console.WriteLine("Alright the time has come to meet your new virtual pets.\n\n");
+                Console.WriteLine("Which pet would you like to meet first?\n\n");
 
+                string tempPetStr;
+                int ctr = 0;
+                do
+                {
+                    Console.WriteLine("Please type the pets name or exit to quit.\n\n");
+
+                    int k = 1;
+                    foreach (KeyValuePair<string, string> pair in nameType)
+                    {
+
+                        Console.WriteLine("{0}. {1} {2}\n\n", k++, pair.Key, pair.Value);
+                    }
+
+                    string meetPetStr = Console.ReadLine().ToUpper();
+
+                    Console.WriteLine(meetPetStr);
+
+
+                    if (meetPetStr == "EXIT")
+                    {
+                        ExitMethod(meetPetStr);
+                    }
+                    foreach (KeyValuePair<string, string> count in nameType)
+                    {
+                        if (count.Value == meetPetStr)
+                        {
+                            petType = count.Key;
+                            petName = count.Value;
+
+                            switch (petType)
+                            {
+                                case "Cat":
+                                    VirtualPet VTPCat = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPCat.petstatus();
+                                    Console.WriteLine("cat");
+                                    break;
+                                case "Dog":
+                                    VirtualPet VTPDog = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPDog.petstatus();
+                                    Console.WriteLine("dog");
+                                    break;
+                                case "Ferrett":
+                                    VirtualPet VTPFerrett = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPFerrett.petstatus();
+                                    Console.WriteLine("Ferrett");
+                                    break;
+                                case "Parrot":
+                                    VirtualPet VTPParrot = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPParrot.petstatus();
+                                    Console.WriteLine("parrot");
+                                    break;
+                                case "Goldfish":
+                                    VirtualPet VTPGoldfish = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPGoldfish.petstatus();
+                                    Console.WriteLine("goldfish");
+                                    break;
+                                case "Hamster":
+                                    VirtualPet VTPHamster = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPHamster.petstatus();
+                                    Console.WriteLine("ham");
+                                    break;
+                                case "Snake":
+                                    VirtualPet VTPSnake = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPSnake.petstatus();
+                                    Console.WriteLine("snake");
+                                    break;
+                                case "Ultimate Red Eyes Black Dragon":
+                                    VirtualPet VTPUREBD = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPUREBD.petstatus();
+                                    Console.WriteLine("dragon");
+                                    break;
+                                case "Godizalla":
+                                    VirtualPet VTPGodizalla = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPGodizalla.petstatus();
+                                    Console.WriteLine("godizalla");
+                                    break;
+                                case "King Kong":
+                                    VirtualPet VTPKingKong = new VirtualPet(petName, petType, 0, 0, 0, 0);
+                                    VTPKingKong.petstatus();
+                                    Console.WriteLine("KK");
+                                    break;
+                                default:
+                                    Console.WriteLine("The pet doesnt exist");
+                                    break;
+
+                            }
+
+                        }
+                        
+                    }
+                    ctr++;
+                    Console.WriteLine(ctr);
+
+                    if (ctr == numPets)
+                    {
+                        meetAnotherPet = false;
+                    }else
+                    {
+                        Console.WriteLine("Would you like to meet another virtual pet?");
+                        Console.WriteLine("Type exit to quit or hit any key to continue");
+                        string meetAnotherPetStr = Console.ReadLine().ToUpper();
+                        if (meetAnotherPetStr == "EXIT")
+                        {
+                        meetAnotherPet = false;
+                        }
+                        
+                    }
+                    
+
+                    
+                } while (meetAnotherPet == true && ctr < numPets);
+
+                //switch (meetPets)
+                //{
+                //    case 1:
+                //        Dictionary<string, VirtualPet> DogList = new Dictionary<string, VirtualPet>;
+                //        for (int i = 1; i <= 10; i++)
+                //        {
+                //            DogList.Add(nameType(1) + i, new VirtualPet(0,0,0,0));
+                //        }
+                //        break;
+
+                //}
                 exitProgram = true;
 
             }
         }
+
+       
+        
 
         public static void ExitMethod(string exitPro)
         {
