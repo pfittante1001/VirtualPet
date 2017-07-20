@@ -20,20 +20,24 @@ namespace VirtualPet
             int petActivity;
             int createPets = 0;
             int meetPets;
+            int petAge = 0;
+            string adoptionDate = DateTime.Now.ToString();
+            int adoptionMinute = DateTime.Now.Minute;
+            int expiredTime = DateTime.Now.Minute - adoptionMinute; 
             string petName = "";
             string petType = "";
             bool exitProgram = true;
-            bool isHungry;
-            bool isThirsty;
-            bool isSleepy;
-            bool isBored;
+            string isHungry = "No";
+            string isThirsty = "No";
+            string isSleepy = "No";
+            string isBored = "No";
             bool meetAnotherPet = true;
-
             List<string> petNames = new List<string>(numPets);
             List<string> petTypes = new List<string>() { "Cat", "Dog", "Ferrett", "Parrot", "Goldfish", "Hamster", "Snake", "Ultimate Red Eyes Black Dragon", "Godizalla", "King Kong"};
             List<string> results = new List<string>();
             Dictionary<string, string> nameType = new Dictionary<string, string>();
             VirtualPet mainPet = new VirtualPet(petName, petType, 0, 0, 0, 0);
+            PetInformation mainPet1 = new PetInformation(petName, petType, petAge,isHungry, isThirsty, isSleepy, isBored, adoptionDate);
             Console.WriteLine("Welcome to Virtual Pet! ");
             Console.WriteLine("\n\n\nWould you like to meet your virtual pet? ");
             Console.Write("\n\nPlease press the enter key to continue, or type exit to quit: ");
@@ -100,7 +104,7 @@ namespace VirtualPet
                         Console.Write("\n\nOwning four pets is a full time job");
                         break;
                     case 5:
-                        Console.Write("\n\nFive pets are a recipie for disaster");
+                        Console.Write("\n\nFive pets are a recipe for disaster");
                         break;
                     default:
                         break;
@@ -142,7 +146,7 @@ namespace VirtualPet
                 Console.WriteLine("Alright the time has come to meet your new virtual pets.\n\n");
                 Console.WriteLine("Which pet would you like to meet first?\n\n");
 
-                string tempPetStr;
+                
                 int ctr = 0;
                 do
                 {
@@ -175,52 +179,92 @@ namespace VirtualPet
                             {
                                 case "Cat":
                                     VirtualPet VTPCat = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPCat.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTCat = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);
+                                    PTCat.GetPetInformation();
                                     Console.WriteLine("cat");
                                     break;
                                 case "Dog":
                                     VirtualPet VTPDog = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPDog.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTDog = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);
+                                    PTDog.GetPetInformation();
                                     Console.WriteLine("dog");
                                     break;
                                 case "Ferrett":
                                     VirtualPet VTPFerrett = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPFerrett.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTFerrett = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);
+                                    PTFerrett.GetPetInformation();
                                     Console.WriteLine("Ferrett");
                                     break;
                                 case "Parrot":
                                     VirtualPet VTPParrot = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPParrot.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTParrot = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);                                   
+                                    PTParrot.GetPetInformation();
                                     Console.WriteLine("parrot");
                                     break;
                                 case "Goldfish":
                                     VirtualPet VTPGoldfish = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPGoldfish.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTGoldfish = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);
+                                    PTGoldfish.GetPetInformation();
                                     Console.WriteLine("goldfish");
                                     break;
                                 case "Hamster":
                                     VirtualPet VTPHamster = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPHamster.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTHamster = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);
+                                    PTHamster.GetPetInformation();
                                     Console.WriteLine("ham");
                                     break;
                                 case "Snake":
                                     VirtualPet VTPSnake = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPSnake.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTSnake = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);
+                                    PTSnake.GetPetInformation();
                                     Console.WriteLine("snake");
                                     break;
                                 case "Ultimate Red Eyes Black Dragon":
                                     VirtualPet VTPUREBD = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPUREBD.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTUREBD = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);
+                                    PTUREBD.GetPetInformation();
                                     Console.WriteLine("dragon");
                                     break;
                                 case "Godizalla":
                                     VirtualPet VTPGodizalla = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPGodizalla.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTGodzilla = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);
+                                    PTGodzilla.GetPetInformation();
                                     Console.WriteLine("godizalla");
                                     break;
                                 case "King Kong":
                                     VirtualPet VTPKingKong = new VirtualPet(petName, petType, 0, 0, 0, 0);
-                                    VTPKingKong.petstatus();
+                                    petAge = GetAge();
+                                    isHungry = IsHungry(expiredTime);
+                                    Console.WriteLine(isHungry);
+                                    PetInformation PTKingKong = new PetInformation(petName, petType, petAge, isHungry, isThirsty, isSleepy, isBored, adoptionDate);
+                                    PTKingKong.GetPetInformation();
                                     Console.WriteLine("KK");
                                     break;
                                 default:
@@ -254,24 +298,37 @@ namespace VirtualPet
                     
                 } while (meetAnotherPet == true && ctr < numPets);
 
-                //switch (meetPets)
-                //{
-                //    case 1:
-                //        Dictionary<string, VirtualPet> DogList = new Dictionary<string, VirtualPet>;
-                //        for (int i = 1; i <= 10; i++)
-                //        {
-                //            DogList.Add(nameType(1) + i, new VirtualPet(0,0,0,0));
-                //        }
-                //        break;
-
-                //}
+                
                 exitProgram = true;
 
             }
         }
 
-       
-        
+        public static string IsHungry(int expiredTime )
+        {
+            string isHungry;
+            if(expiredTime < 1 )
+            {
+                isHungry = "is not";
+                Console.WriteLine(isHungry);
+            }else
+            {
+                isHungry = "is";
+                Console.WriteLine(isHungry);
+            }
+            Console.WriteLine(isHungry);
+
+            return isHungry;
+        }
+        public static int GetAge()
+        {
+            int min = 1;
+            int max = 5;
+            int petAge = 0;
+            Random petAgeRnd = new Random();
+            petAge = petAgeRnd.Next(min, max);
+            return petAge;
+        }
 
         public static void ExitMethod(string exitPro)
         {
